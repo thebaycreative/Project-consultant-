@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>B.M. Photography — San Francisco Bay Area</title>
+  <title>B.M. — Local Bay Area Photography</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
@@ -146,7 +146,7 @@
       font-weight: 300;
       color: var(--stone);
       line-height: 1.8;
-      max-width: 320px;
+      max-width: 340px;
       margin-bottom: 3rem;
       opacity: 0;
       animation: fadeUp 1s ease forwards 0.9s;
@@ -174,11 +174,10 @@
       overflow: hidden;
     }
 
-    /* Real photo hero panel */
+    /* Hero panel */
     .hero-img {
       width: 100%; height: 100%;
-      /* Aerial Golden Gate image representing the helicopter vibe */
-      background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?w=1400&q=85&auto=format&fit=crop');
+      background-image: url('https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=1400&q=85&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
     }
@@ -205,7 +204,7 @@
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.8);
       z-index: 3;
       writing-mode: vertical-rl;
     }
@@ -241,19 +240,21 @@
       color: var(--stone);
     }
 
+    /* Updated Dynamic Gallery Grid */
     .gallery {
       display: grid;
-      grid-template-columns: 3fr 2fr;
-      grid-template-rows: 260px 260px;
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      grid-auto-rows: 280px;
     }
 
     .g-item { overflow: hidden; position: relative; cursor: none; }
-    .g-item:nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
-    .g-item:nth-child(2) { grid-column: 2; grid-row: 1; }
-    .g-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+    
+    /* Make some items span 2 columns/rows for visual interest */
+    .g-item.large { grid-column: span 2; grid-row: span 2; }
+    .g-item.tall { grid-row: span 2; }
+    .g-item.wide { grid-column: span 2; }
 
-    /* red top-border on hover */
     .g-item::before {
       content: '';
       position: absolute;
@@ -275,17 +276,6 @@
     }
     .g-item:hover .g-bg { transform: scale(1.04); }
 
-    /* SF Bay Area Unsplash photos */
-    .photo-baker-beach {
-      background-image: url('https://images.unsplash.com/photo-1521464302861-ce943915d1c3?w=1400&q=85&auto=format&fit=crop');
-    }
-    .photo-marin-headlands {
-      background-image: url('https://images.unsplash.com/photo-1480796927426-f609979314bd?w=900&q=85&auto=format&fit=crop');
-    }
-    .photo-bay-bridge {
-      background-image: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=900&q=85&auto=format&fit=crop');
-    }
-
     .g-caption {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -303,9 +293,8 @@
       color: rgba(255,255,255,0.92);
     }
 
-    /* Photo credits */
     .photo-credits {
-      margin-top: 1rem;
+      margin-top: 2rem;
       font-size: 0.6rem;
       color: var(--stone);
       letter-spacing: 0.05em;
@@ -325,10 +314,10 @@
     .about-img-wrap { position: relative; aspect-ratio: 3/4; max-height: 540px; }
 
     .about-img {
-      background-image: url('https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=900&q=85&auto=format&fit=crop');
+      width: 100%; height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900&q=85&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
-      width: 100%; height: 100%;
     }
 
     .about-img-border {
@@ -505,8 +494,6 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
     /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 1.5rem 2rem; }
@@ -515,13 +502,15 @@
       .hero-left { padding: 9rem 2rem 4rem; }
       .hero-right { height: 55vw; }
       #work { padding: 5rem 2rem; }
+      
       .gallery {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 200px 200px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 200px;
       }
-      .g-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
-      .g-item:nth-child(2) { grid-column: 1;     grid-row: 2; }
-      .g-item:nth-child(3) { grid-column: 2;     grid-row: 2; }
+      .g-item.large { grid-column: span 1; grid-row: span 1; }
+      .g-item.tall { grid-row: span 1; }
+      .g-item.wide { grid-column: span 1; }
+
       #about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
       .about-img-wrap { max-height: 350px; aspect-ratio: 4/3; }
       #contact { padding: 5rem 2rem; }
@@ -532,11 +521,8 @@
     @media (max-width: 560px) {
       .gallery {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, 220px);
+        grid-auto-rows: 220px;
       }
-      .g-item:nth-child(1),
-      .g-item:nth-child(2),
-      .g-item:nth-child(3) { grid-column: 1; grid-row: auto; }
       .nav-links { display: none; }
     }
   </style>
@@ -558,51 +544,100 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-left">
-      <p class="hero-eyebrow">Scenic Vibes · SF Bay Area</p>
+      <p class="hero-eyebrow">Local Photography · San Jose &amp; The Bay Area</p>
       <h1 class="hero-title">
-        Catching<br />
-        those<br />
-        <em>Bay Area</em> views.
+        Capturing life,<br />
+        spaces, &amp;<br />
+        <em>wild</em> places.
       </h1>
       <p class="hero-sub">
-        Just a local photographer mainly chasing the best views around the SF Bay. Open to 
+        From the scenic coastlines of the Bay Area to striking real estate listings, local businesses, and personal milestones.
       </p>
-      <a class="hero-cta" href="#work">Check out my shots</a>
+      <a class="hero-cta" href="#work">View the work</a>
     </div>
     <div class="hero-right">
-      <!-- Aerial view of the Golden Gate / SF skyline vibe -->
       <div class="hero-img"></div>
-      <span class="photo-label">Golden Gate &amp; SF Skyline</span>
+      <span class="photo-label">Bay Area Coastline</span>
     </div>
   </section>
 
   <!-- GALLERY -->
   <section id="work">
     <div class="work-header reveal">
-      <h2 class="work-title">Favorite Snaps</h2>
-      <span class="work-note">Around the Bay</span>
+      <h2 class="work-title">Selected Work</h2>
+      <span class="work-note">Scenic, Real Estate, Brands &amp; Portraits</span>
     </div>
 
     <div class="gallery reveal">
-      <!-- Baker Beach vibe -->
-      <div class="g-item">
-        <div class="g-bg photo-baker-beach"></div>
-        <div class="g-caption"><span class="g-caption-text">Baker Beach · Sunset Vibes</span></div>
+      <!-- 1: Real Estate Interior -->
+      <div class="g-item wide">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Real Estate · Living Spaces</span></div>
       </div>
-      <!-- Marin Headlands -->
+      <!-- 2: Graduation -->
       <div class="g-item">
-        <div class="g-bg photo-marin-headlands"></div>
-        <div class="g-caption"><span class="g-caption-text">Marin Headlands · Above the Fog</span></div>
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Portraits · Graduation</span></div>
       </div>
-      <!-- Bay Bridge -->
+      <!-- 3: Scenic (Point Reyes) -->
+      <div class="g-item tall">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1506397663129-f05904795da9?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Scenic · Point Reyes Lighthouse</span></div>
+      </div>
+      <!-- 4: Small Business Cafe -->
       <div class="g-item">
-        <div class="g-bg photo-bay-bridge"></div>
-        <div class="g-caption"><span class="g-caption-text">Bay Bridge · Golden Hour</span></div>
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Local Business · Cafe</span></div>
+      </div>
+      <!-- 5: Real Estate Exterior -->
+      <div class="g-item">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Real Estate · Exteriors</span></div>
+      </div>
+      <!-- 6: Scenic (Muir Woods) -->
+      <div class="g-item wide">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1536626321168-6350af5a45a3?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Scenic · Muir Woods</span></div>
+      </div>
+      <!-- 7: Graduation Cap Toss -->
+      <div class="g-item">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Portraits · Milestones</span></div>
+      </div>
+      <!-- 8: Business Portrait -->
+      <div class="g-item tall">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Brand · Team Portraits</span></div>
+      </div>
+      <!-- 9: Real Estate Kitchen -->
+      <div class="g-item">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09c26372?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Real Estate · Details</span></div>
+      </div>
+      <!-- 10: Scenic (Mount Tamalpais) -->
+      <div class="g-item">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1611026491910-0ca1bf60ea25?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Scenic · Mount Tamalpais</span></div>
+      </div>
+      <!-- 11: Small Business Boutique -->
+      <div class="g-item wide">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Local Business · Retail Spaces</span></div>
+      </div>
+      <!-- 12: Professional Headshot -->
+      <div class="g-item">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Portraits · Professional</span></div>
+      </div>
+      <!-- 13: Scenic Ocean -->
+      <div class="g-item">
+        <div class="g-bg" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=85&auto=format&fit=crop');"></div>
+        <div class="g-caption"><span class="g-caption-text">Scenic · The Coast</span></div>
       </div>
     </div>
 
     <p class="photo-credits reveal">
-      All images sourced via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> copyright-free library.
+      Images via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>
     </p>
   </section>
 
@@ -614,15 +649,15 @@
     </div>
     <div class="reveal">
       <p class="about-label">About</p>
-      <h2 class="about-title">Always looking<br />for the perfect shot.</h2>
+      <h2 class="about-title">Making your<br />spaces &amp; moments shine.</h2>
       <p class="about-body">
-        Hey! I'm based right here in the SF Bay Area. I spend most of my time exploring spots that most folks just drive past. Whether I'm up in a chopper capturing the Golden Gate or hiking up Marin for sunset, I just love soaking in the views.
+        Hey there, I'm B.M. Most days you'll find me out exploring the local trails or capturing the stunning California coastline, but I love bringing that same eye for natural light indoors.
       </p>
       <p class="about-body">
-        My style is pretty laid back. I love hanging out and waiting for the light to do something awesome. Photography isn't just about snapping a pic; it's about being there for a sick moment that won't happen twice.
+        When I'm not shooting landscapes, I help real estate agents, local businesses, and graduates capture their most important moments and spaces. I've found that the same skills it takes to capture the perfect outdoor shot — patience, framing, and finding the best natural light — translate perfectly to making a home listing or a storefront look bright, open, and inviting.
       </p>
       <p class="about-body">
-        Hit me up if you want some prints for your wall or just wanna talk collabs!
+        Whether it’s a scenic sunset, a new home listing, or your graduation day, I’m all about creating beautiful, standout images. Let's create something great together!
       </p>
       <div class="about-sig">B.M.</div>
     </div>
@@ -631,9 +666,9 @@
   <!-- CONTACT -->
   <section id="contact">
     <p class="contact-label reveal">Get in Touch</p>
-    <h2 class="contact-title reveal">Let's make something awesome.</h2>
+    <h2 class="contact-title reveal">Let's talk about your project.</h2>
     <p class="contact-sub reveal">
-      Want a print, need some licensing, or have a fun project in mind? Drop me a line and I'll get back to you in a day or two.
+      Whether you need real estate photos, branding for your business, a graduation portrait session, or scenic prints — reach out and I'll get back to you within a couple of days.
     </p>
     <form class="contact-form reveal" id="contactForm">
       <div class="form-row">
@@ -651,31 +686,32 @@
         <input type="email" id="email" required />
       </div>
       <div class="form-group">
-        <label for="interest">What's up?</label>
+        <label for="interest">Photography Service Needed</label>
         <select id="interest">
           <option value="">Select one...</option>
-          <option>Wall Prints</option>
-          <option>Collabs &amp; Projects</option>
-          <option>Commercial Licensing</option>
-          <option>General Chat</option>
+          <option>Real Estate / Architecture</option>
+          <option>Small Business / Brand</option>
+          <option>Portraits / Graduation</option>
+          <option>Scenic Prints / Licensing</option>
+          <option>General Inquiry</option>
         </select>
       </div>
       <div class="form-group">
         <label for="message">Message</label>
-        <textarea id="message" placeholder="Tell me what you have in mind..."></textarea>
+        <textarea id="message" placeholder="Tell me about what you have in mind..."></textarea>
       </div>
-      <p class="inquiry-note">We can chat about pricing once we figure out what you need.</p>
-      <button type="submit" class="btn-submit">Send It</button>
+      <p class="inquiry-note">Pricing and availability discussed upon inquiry.</p>
+      <button type="submit" class="btn-submit">Send Inquiry</button>
     </form>
     <div class="form-success" id="formSuccess">
-      Thanks! I'll hit you up soon.
+      Thank you — I'll be in touch soon.
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span class="footer-name">B . M .</span>
-    <span class="footer-loc">San Francisco Bay Area</span>
+    <span class="footer-loc">San Jose &amp; The Bay Area</span>
     <span class="footer-copy">&copy; 2026 &middot; All images reserved</span>
   </footer>
 
